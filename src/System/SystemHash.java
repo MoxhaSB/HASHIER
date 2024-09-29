@@ -56,7 +56,8 @@ public class SystemHash {
                 "| |_| |/ /_\\ \\\\ `--.| |_| | | | | |__ | |_/ /\n" +
                 "|  _  ||  _  | `--. \\  _  | | | |  __||    / \n" +
                 "| | | || | | |/\\__/ / | | |_| |_| |___| |\\ \\ \n" +
-                "\\_| |_/\\_| |_/\\____/\\_| |_/\\___/\\____/\\_| \\_|\n");
+                "\\_| |_/\\_| |_/\\____/\\_| |_/\\___/\\____/\\_| \\_|\n" +
+                "                 MoxhaSB                               ");
         while(true){
 
             System.out.println("""
@@ -110,9 +111,13 @@ public class SystemHash {
      * Method that save the txt file names
      */
     public void seeSavedTxtFile(){
-        System.out.println("FILES: ");
-        for(String name : txtFiles){
-            System.out.println(name);
+        if(txtFiles != null) {
+            System.out.println("FILES: ");
+            for (String name : txtFiles) {
+                System.out.println(name);
+            }
+        }else{
+            System.out.println("\nThere is no files.");
         }
     }
 

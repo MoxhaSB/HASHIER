@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SuperHashier:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SuperHashier_jar</output-path>
+    <root id="archive" name="SuperHashier.jar">
+      <element id="module-output" name="SuperHashier" />
+    </root>
+  </artifact>
+</component>
