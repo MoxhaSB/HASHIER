@@ -31,7 +31,7 @@ public class Helper {
      * @param hash hash
      * @param creator Hasher
      */
-    public final void readArchivesTxt(String hash, Hasher creator) {
+    public final boolean readArchivesTxt(String hash, Hasher creator) {
         if (createDirectory()) {
             Path carpeta = Paths.get("Archives");
 
@@ -45,7 +45,7 @@ public class Helper {
                         System.out.println("Place some files with the .txt extension in this path to search for passwords.");
                         System.out.println("PATH: " + carpeta.toAbsolutePath());
                         openDirectory(carpeta);
-                        return;
+                        return false;
                     }
                 }
 
@@ -69,6 +69,8 @@ public class Helper {
 
                     if (!found) {
                         System.out.println("|*| The word has not been found :( ");
+                    }else{
+                        return true;
                     }
 
                 }
@@ -78,6 +80,7 @@ public class Helper {
                 e.printStackTrace();
             }
         }
+        return false;
     }
 
     /**
