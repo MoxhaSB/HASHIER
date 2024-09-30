@@ -28,7 +28,7 @@ public class SystemHash {
     /**
      * The list that contains name of the txt files
      */
-    private final List<String> txtFiles;
+    private List<String> txtFiles;
     /**
      * the path to the directory
      */
@@ -72,7 +72,8 @@ public class SystemHash {
                     2) Find password with hash
                     3) See saved txt files
                     4) Open directory
-                    5) Exit
+                    5) Refresh
+                    6) Exit
                     Write your option: 
                     """);
             switch (helper.verifyData(read)){
@@ -81,7 +82,8 @@ public class SystemHash {
                 case 2-> findPasswordWithHash();
                 case 3-> seeSavedTxtFile();
                 case 4-> {System.out.println("Opening... ");helper.openDirectory(carpeta);}
-                case 5-> {return;}
+                case 5-> refresh();
+                case 6-> {return;}
                 default-> System.out.println("\nWrite a valid option. ");
             }
         }
@@ -132,6 +134,13 @@ public class SystemHash {
         }else{
             System.out.println("\nThere is no files.");
         }
+    }
+
+    /**
+     * Method that refresh the txt file in the system
+     */
+    public void refresh(){
+        this.txtFiles = helper.getTxtFiles();
     }
 
 
