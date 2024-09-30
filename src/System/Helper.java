@@ -2,6 +2,7 @@ package System;
 
 import java.awt.*;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.charset.MalformedInputException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -130,23 +131,34 @@ public class Helper {
      * @return list
      */
     public List<String> readFileWithFallback(Path archivo) {
-        try {
-            // Intentar leer en UTF-8
-            return Files.readAllLines(archivo, StandardCharsets.UTF_8);
 
-        } catch (MalformedInputException e) {
-            System.out.println("UTF-8 falló. Intentando con ISO-8859-1... " + archivo.getFileName());
+        //los formatos en los que puede estar un archivo txt
+        Charset[] charsets = {
+                StandardCharsets.UTF_8,
+                StandardCharsets.ISO_8859_1,
+                Charset.forName("Windows-1252"),
+                StandardCharsets.UTF_16,
+                StandardCharsets.UTF_16LE,
+                StandardCharsets.UTF_16BE,
+        };
+
+        //se recorre la lista con formatos para ir probando cual sirve.
+        for (Charset charset : charsets) {
             try {
-                // Intentar con ISO-8859-1
-                return Files.readAllLines(archivo, StandardCharsets.ISO_8859_1);
-            } catch (IOException ex) {
-                System.out.println("Error leyendo el archivo en ambas codificaciones: " + archivo.getFileName());
-                ex.printStackTrace();
+                // Intentar leer el archivo en la codificación actual
+                System.out.println("-Encode: " + charset.name());
+                return Files.readAllLines(archivo, charset);
+
+            } catch (MalformedInputException e) {
+                System.out.print(">>> Fail <<<\n");
+            } catch (IOException e) {
+                System.out.println("Error reading the file with the encoding: " + charset.name());
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-        return Collections.emptyList(); // Retorna una lista vacía si falla
+
+        System.out.println("\nCould not read the file in any of the encodings.");
+        return Collections.emptyList(); // Retorna una lista vacía si todas las codificaciones fallan
     }
 
     /**
