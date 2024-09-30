@@ -33,7 +33,7 @@ public class Helper {
      */
     public final boolean readArchivesTxt(String hash, Hasher creator) {
         if (createDirectory()) {
-            Path carpeta = Paths.get("Archives");
+            Path carpeta = Paths.get("SuperHashierTxtArchives");
 
             try {
                 // Crear un Stream de archivos
