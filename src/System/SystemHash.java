@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
+import java.time.Instant;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,23 +16,28 @@ public class SystemHash {
     /**
      * the scanner to read inputs
      */
-    public final Scanner read = new Scanner(System.in);
+    private final Scanner read = new Scanner(System.in);
     /**
      * class helper to get some methods
      */
-    public final Helper helper = new Helper();
+    private final Helper helper = new Helper();
     /**
      * the creator of hashes
      */
-    public final Hasher hasher = new Hasher();
+    private final Hasher hasher = new Hasher();
     /**
      * The list that contains name of the txt files
      */
-    public final List<String> txtFiles;
+    private final List<String> txtFiles;
     /**
      * the path to the directory
      */
-    public final Path carpeta = Paths.get("Archives");
+    private final Path carpeta = Paths.get("Archives");
+
+    /**
+     * The time reader
+     */
+    private final TimeReader timeReader = new TimeReader();
 
     /**
      * Constructor
@@ -103,7 +109,14 @@ public class SystemHash {
         String hash = read.nextLine();
 
         if(helper.createDirectory()){
-            helper.readArchivesTxt(hash,hasher);
+            Instant start = timeReader.getTime(); //para calcular el tiempo que tarda
+
+            if (helper.readArchivesTxt(hash,hasher)){//find the password
+
+                Instant end = timeReader.getTime(); //timepo final
+
+                timeReader.showDuration(start,end);//muestra el tiempo
+            }
         }
     }
 
