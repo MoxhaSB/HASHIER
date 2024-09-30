@@ -28,6 +28,6 @@ public class TimeReader {
     public void showDuration(Instant start, Instant end){
         // Calcular la duración en milisegundos y luego en segundos con tres decimales
         Duration duracion = Duration.between(start, end);
-        System.out.println("|*| The word was found in " + (duracion.toMillis() / 1000.0) + " seconds |*|"); ;
+        System.out.println("|*| The word was found in " + (duracion.toMillis() / 1000.0) + " seconds |*|");
     }
 }
