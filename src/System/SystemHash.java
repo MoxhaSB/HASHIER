@@ -32,7 +32,7 @@ public class SystemHash {
     /**
      * the path to the directory
      */
-    private final Path carpeta = Paths.get("Archives");
+    private final Path carpeta = Paths.get("SuperHashierTxtArchives");
 
     /**
      * The time reader
