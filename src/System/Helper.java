@@ -92,7 +92,7 @@ public class Helper {
         ArrayList<String> txtFiles = new ArrayList<>();
 
         if (createDirectory()) {
-            Path carpeta = Paths.get("Archives");
+            Path carpeta = Paths.get("SuperHashierTxtArchives");
 
             try {
                 // Crear un Stream de archivos
@@ -154,7 +154,7 @@ public class Helper {
      * @return true if the directory already exist
      */
     public final boolean createDirectory() {
-        Path carpeta = Paths.get("Archives");
+        Path carpeta = Paths.get("SuperHashierTxtArchives");
 
         // Crear la carpeta si no existe
         if (Files.notExists(carpeta)) {
